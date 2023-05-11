@@ -1,3 +1,9 @@
 {
-  "Перевод": "Translation"
+  "Перевод": "Translation",
+  "Регистрация": "Sign Up",
+  "Войти": "Sign in",
+  "Пароль": "Error: uncorrect password",
+  "Почта": "Error: uncorrect email",
+  "Имя": "Error: uncorrect name",
+  "Приветствие": "Hello!"
 }
