@@ -1,18 +1,21 @@
 import { Suspense } from 'react';
 
 import LangSwitch from './components/LangSwitch/LangSwitch';
-import { AuthPage } from './pages';
+import AppRouter from './router/AppRouter';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="app">
-      <Suspense fallback="">
-        <div className="app-content">
-          <LangSwitch />
-          <AuthPage></AuthPage>
-        </div>
-      </Suspense>
-    </div>
+    <BrowserRouter>
+      <div className="app">
+        <Suspense fallback="">
+          <div className="app-content">
+            <LangSwitch />
+            <AppRouter />
+          </div>
+        </Suspense>
+      </div>
+    </BrowserRouter>
   );
 }
 

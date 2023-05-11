@@ -1,20 +1,12 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
-  signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth';
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from 'firebase/firestore';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCaFnbdLBV9uzBcxoJusuQuT_08NEYv17U',
@@ -80,4 +72,6 @@ export const sendPasswordReset = async (email: string) => {
 
 export const logout = () => {
   signOut(auth);
+  console.log('logout complete');
+  console.log('Auth', auth);
 };
