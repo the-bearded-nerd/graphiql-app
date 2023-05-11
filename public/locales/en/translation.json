@@ -3,6 +3,7 @@
   "Регистрация": "Sign Up",
   "Войти": "Sign in",
   "Пароль": "Error: uncorrect password",
+  "Совпадение паролей": "Passwords do not match",
   "Почта": "Error: uncorrect email",
   "Имя": "Error: uncorrect name",
   "Приветствие": "Hello!",
