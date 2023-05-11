@@ -4,31 +4,31 @@ import { auth } from '../firebase';
 
 import * as Pages from '../pages';
 
+const routes = [
+  {
+    path: '/',
+    element: <Pages.GreetingPage />,
+    private: false,
+  },
+  {
+    path: '/main',
+    element: <Pages.MainPage />,
+    private: true,
+  },
+  {
+    path: '/auth',
+    element: <Pages.AuthPage />,
+    private: true,
+  },
+  {
+    path: '*',
+    element: <Pages.NotFoundPage />,
+    private: false,
+  },
+];
+
 export default function AppRouter() {
   const [user] = useAuthState(auth);
-  const routes = [
-    {
-      path: '/',
-      element: <Pages.GreetingPage />,
-      private: false,
-    },
-    {
-      path: '/main',
-      element: <Pages.MainPage />,
-      private: true,
-    },
-    {
-      path: '/auth',
-      element: <Pages.AuthPage />,
-      private: true,
-    },
-    {
-      path: '*',
-      element: <Pages.NotFoundPage />,
-      private: false,
-    },
-  ];
-
   return (
     <Routes>
       {routes.map((route, index) =>
