@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/auth',
     element: <Pages.AuthPage />,
-    private: true,
+    private: false,
   },
   {
     path: '*',
