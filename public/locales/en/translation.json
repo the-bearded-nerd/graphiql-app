@@ -5,5 +5,7 @@
   "Пароль": "Error: uncorrect password",
   "Почта": "Error: uncorrect email",
   "Имя": "Error: uncorrect name",
-  "Приветствие": "Hello!"
+  "Приветствие": "Hello!",
+  "на главную": "To main page",
+  "выйти": "Log out"
 }
