@@ -6,15 +6,11 @@ import { Layout } from './components/Layout/Layout';
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
-        <Suspense fallback="">
-          <div className="app-content">
-            <Layout>
-              <AppRouter />
-            </Layout>
-          </div>
-        </Suspense>
-      </div>
+      <Suspense fallback="">
+        <Layout>
+          <AppRouter />
+        </Layout>
+      </Suspense>
     </BrowserRouter>
   );
 }

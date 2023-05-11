@@ -1,3 +1,9 @@
 .layout {
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.page {
+  padding: 20px;
+  flex-grow: 1;
 }

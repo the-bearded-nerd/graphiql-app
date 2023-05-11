@@ -1,5 +1,14 @@
 .footer {
+  padding: 10px 0;
+  background: #0d3800;
+  color: #fff;
+}
+
+.links {
   display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
+  align-items: center;
+  gap: 15px;
+  a, a:visited {
+    color: inherit;
+  }
 }

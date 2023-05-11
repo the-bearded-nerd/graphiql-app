@@ -7,7 +7,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={cl['layout']}>
       <Header />
-      {children}
+      <main className={cl['page']}>
+        <div className="_container">{children}</div>
+      </main>
       <Footer />
     </div>
   );
