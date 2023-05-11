@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 
 import LangSwitch from './components/LangSwitch/LangSwitch';
-import Authorization from './components/Authorization/Authorization';
+import { AuthPage } from './pages';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Suspense fallback="">
         <div className="app-content">
           <LangSwitch />
-          <Authorization />
+          <AuthPage></AuthPage>
         </div>
       </Suspense>
     </div>
