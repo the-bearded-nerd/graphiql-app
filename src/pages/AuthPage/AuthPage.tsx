@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import cl from './AuthPage.module.scss';
 import { SignIn, SignUp } from '../../components/Authorization';
@@ -18,9 +18,11 @@ export const AuthPage = () => {
 
   return (
     <div className={cl['container']}>
-      <div className="tabs">
-        <button onClick={() => setActiveTab('sign in')}>{t('Войти')}</button>
-        <button onClick={() => setActiveTab('sign up')}>
+      <div className={cl['tabs']}>
+        <button className={cl['tab']} onClick={() => setActiveTab('sign in')}>
+          {t('Войти')}
+        </button>
+        <button className={cl['tab']} onClick={() => setActiveTab('sign up')}>
           {t('Регистрация')}
         </button>
       </div>
