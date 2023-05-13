@@ -1,3 +1,14 @@
 {
-  "Перевод": "Translation"
+  "Перевод": "Translation",
+  "Регистрация": "Sign Up",
+  "Войти": "Sign in",
+  "Пароль": "Error: uncorrect password",
+  "Совпадение паролей": "Passwords do not match",
+  "Почта": "Error: uncorrect email",
+  "Имя": "Error: uncorrect name",
+  "Приветствие": "Hello!",
+  "на главную": "To main page",
+  "выйти": "Log out",
+  "Дима": "Dmitry Karvonen",
+  "Саша": "Alexandra Samoilova"
 }

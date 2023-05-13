@@ -1,17 +1,18 @@
 import { Suspense } from 'react';
-
-import LangSwitch from './components/LangSwitch/LangSwitch';
+import AppRouter from './router/AppRouter';
+import { BrowserRouter } from 'react-router-dom';
+import { Layout } from './components/Layout/Layout';
 
 function App() {
-    return (
-        <div className="app">
-            <Suspense fallback="">
-                <div className="app-content">
-                    <LangSwitch />
-                </div>
-            </Suspense>
-        </div>
-    );
+  return (
+    <BrowserRouter>
+      <Suspense fallback="">
+        <Layout>
+          <AppRouter />
+        </Layout>
+      </Suspense>
+    </BrowserRouter>
+  );
 }
 
 export default App;
