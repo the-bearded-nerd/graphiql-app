@@ -10,5 +10,8 @@
   "на главную": "To main page",
   "выйти": "Log out",
   "Дима": "Dmitry Karvonen",
-  "Саша": "Alexandra Samoilova"
+  "Саша": "Alexandra Samoilova",
+  "Произошла непредвиденная ошибка": "Unexpected error occurred",
+  "Обновить страницу": "Reload page",
+  "Выбросить ошибку": "Throw Error"
 }
