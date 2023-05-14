@@ -1,5 +1,6 @@
 import cl from './Header.module.scss';
 import LangSwitch from '../../LangSwitch/LangSwitch';
+import { BugButton } from '../../BugButton/BugButton';
 import { logout } from '../../../firebase';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
@@ -25,6 +26,8 @@ export const Header = () => {
     <header className={cl['header']} ref={headerRef}>
       <div className="container container_horizontal">
         <LangSwitch />
+        {/* BugButton added for test purposes only! */}
+        <BugButton />
         <button onClick={logout}>{t('выйти')}</button>
       </div>
     </header>
