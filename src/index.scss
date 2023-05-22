@@ -3,7 +3,8 @@
   margin: 0;
   box-sizing: border-box;
 }
-html, body {
+html,
+body {
   font-family: sans-serif;
   height: 100%;
 }
@@ -25,4 +26,21 @@ button {
     align-items: center;
     justify-content: space-between;
   }
+}
+
+.type_name {
+  color: orange;
+}
+.type_name:hover,
+.field_name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.field_name {
+  color: blue;
+}
+
+.arg_name {
+  color: red;
 }
