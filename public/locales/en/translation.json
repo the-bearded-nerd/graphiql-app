@@ -13,5 +13,13 @@
   "Саша": "Alexandra Samoilova",
   "Произошла непредвиденная ошибка": "Unexpected error occurred",
   "Обновить страницу": "Reload page",
-  "Выбросить ошибку": "Throw Error"
+  "Выбросить ошибку": "Throw Error",
+  "Поля": "Fields",
+  "Тип": "Type",
+  "Аргументы": "Args",
+  "Root Type": "Root Type",
+  "query": "query",
+  "Query": "Query",
+  "Документация": "Docs",
+  "Схема загружена": "Schema Loaded"
 }
