@@ -92,3 +92,17 @@ export const getIntrospectionQueryData = async () => {
   const data = await request<IntrospectionQuery>(ENDPOINT, INTROSPECTION_QUERY);
   return data;
 };
+
+export const getDataWithVarsAndHeaders = async (
+  query: string,
+  variables: string | undefined,
+  headers: string | undefined
+) => {
+  const data = await request(
+    ENDPOINT,
+    query,
+    variables ? JSON.parse(variables) : undefined,
+    headers ? JSON.parse(headers) : undefined
+  );
+  return data;
+};
