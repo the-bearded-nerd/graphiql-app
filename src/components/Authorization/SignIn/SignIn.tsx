@@ -1,8 +1,7 @@
-import cl from './SignIn.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { logInWithEmailAndPassword, auth } from '../../../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { logInWithEmailAndPassword } from '../../../firebase';
 import { useTranslation } from 'react-i18next';
+import { PasswordInput, Stack, TextInput, Button } from '@mantine/core';
 
 type Inputs = {
   email: string;
@@ -17,41 +16,37 @@ export const SignIn = () => {
     reset,
     formState: { errors },
   } = useForm<Inputs>();
-  const [user, loading, error] = useAuthState(auth);
 
   const submitHandler: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
     const { email, password } = data;
     reset();
     logInWithEmailAndPassword(email, password);
-    console.log(user, error);
   };
 
   return (
-    <form className={cl['form']} onSubmit={handleSubmit(submitHandler)}>
-      <input
-        className={`${cl['input']}${
-          errors.email ? ' ' + cl['input_invalid'] : ''
-        }`}
-        type="email"
-        placeholder="type email"
-        {...register('email', {
-          required: true,
-        })}
-      />
-      {errors.email && <span className={cl['error']}>{t('Почта')}</span>}
-      <input
-        className={`${cl['input']}${
-          errors.password ? ' ' + cl['input_invalid'] : ''
-        }`}
-        type="password"
-        placeholder="type password (Password1!)"
-        {...register('password', {
-          required: true,
-        })}
-      />
-      {errors.password && <span className={cl['error']}>{t('Пароль')}</span>}
-      <button type="submit">{t('Войти')}</button>
+    <form onSubmit={handleSubmit(submitHandler)}>
+      <Stack mt={20}>
+        <TextInput
+          label="Email"
+          type="email"
+          placeholder="type email"
+          {...register('email', {
+            required: true,
+          })}
+          error={errors.email && `${t('Почта')}`}
+        />
+        <PasswordInput
+          label="Password"
+          error={errors.password && `${t('Пароль')}`}
+          placeholder="type password (Password1!)"
+          {...register('password', {
+            required: true,
+          })}
+        />
+        <Button type="submit" color={'custom-color'}>
+          {t('Войти')}
+        </Button>
+      </Stack>
     </form>
   );
 };

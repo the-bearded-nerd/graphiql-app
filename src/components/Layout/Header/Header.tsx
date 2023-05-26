@@ -4,6 +4,8 @@ import { BugButton } from '../../BugButton/BugButton';
 import { logout } from '../../../firebase';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
+import { Group, Text, Button, Flex } from '@mantine/core';
+import { IconBrandGraphql } from '@tabler/icons-react';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -24,12 +26,29 @@ export const Header = () => {
 
   return (
     <header className={cl['header']} ref={headerRef}>
-      <div className="container container_horizontal">
+      <Flex
+        align={'center'}
+        sx={{ justifyContent: 'space-between' }}
+        gap={20}
+        w={'100%'}
+        maw={1220}
+        p={'0 10px'}
+        m={'0 auto'}
+      >
+        <Group>
+          <IconBrandGraphql size={50} color={'#781c2a'} />
+          {/* eslint-disable-next-line i18next/no-literal-string */}
+          <Text fz={'1.5rem'} fw={500} sx={{ userSelect: 'none' }}>
+            GraphiQL-clone
+          </Text>
+        </Group>
         <LangSwitch />
         {/* BugButton added for test purposes only! */}
         <BugButton />
-        <button onClick={logout}>{t('выйти')}</button>
-      </div>
+        <Button onClick={logout} radius={'md'} color={'custom-color'}>
+          {t('выйти')}
+        </Button>
+      </Flex>
     </header>
   );
 };

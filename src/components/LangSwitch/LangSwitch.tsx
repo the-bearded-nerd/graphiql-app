@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Button } from '@mantine/core';
 
 const LangSwitch = () => {
   const { t, i18n } = useTranslation();
@@ -8,11 +9,14 @@ const LangSwitch = () => {
   };
 
   return (
-    <div>
-      <button type="button" onClick={toggle}>
-        {t('Перевод')}
-      </button>
-    </div>
+    <Button
+      radius={'50%'}
+      onClick={toggle}
+      variant={'outline'}
+      color={'custom-color'}
+    >
+      {t('Перевод')}
+    </Button>
   );
 };
 

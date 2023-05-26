@@ -75,6 +75,7 @@ export const NotFoundPage = () => {
             size="md"
             mt="xl"
             className={classes.control}
+            color={'custom-color'}
           >
             <NavLink className={classes.link} to="/main">
               {t('Вернуться')}
