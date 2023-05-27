@@ -1,5 +1,4 @@
 import LangSwitch from '../../LangSwitch/LangSwitch';
-import { BugButton } from '../../BugButton/BugButton';
 import { auth, logout } from '../../../firebase';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
@@ -52,8 +51,6 @@ export const HeaderCustom = () => {
         </Group>
         <LangSwitch />
         <ThemeSwitch />
-        {/* BugButton added for test purposes only! */}
-        <BugButton />
         {user && (
           <Button onClick={logout} radius={'md'} color={'custom-color'}>
             {t('выйти')}
