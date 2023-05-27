@@ -1,7 +1,8 @@
 import { useRef } from 'react';
-
 import { getDataWithVarsAndHeaders } from '../../utils/APIutils';
 import { useTranslation } from 'react-i18next';
+import { Text, Button, Flex, Stack, Textarea } from '@mantine/core';
+import { useRequestStyles } from './GraphqlRequestStyles';
 
 export function GraphQLRequest() {
   const queryRef = useRef<HTMLTextAreaElement>(null);
@@ -10,6 +11,7 @@ export function GraphQLRequest() {
   const outputRef = useRef<HTMLTextAreaElement>(null);
 
   const { t } = useTranslation();
+  const { classes } = useRequestStyles();
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,33 +43,69 @@ export function GraphQLRequest() {
 
   return (
     <>
-      <form onSubmit={onFormSubmit}>
-        <textarea
-          cols={30}
-          rows={10}
-          ref={queryRef}
-          placeholder="query here"
-        ></textarea>
-        <textarea
-          cols={30}
-          rows={10}
-          ref={variablesRef}
-          placeholder="variables here"
-        ></textarea>
-        <textarea
-          cols={30}
-          rows={10}
-          ref={headersRef}
-          placeholder="headers here"
-        ></textarea>
-        <textarea
-          cols={30}
-          rows={10}
-          ref={outputRef}
-          readOnly
-          placeholder="output here"
-        ></textarea>
-        <button type="submit">{t('Отправить запрос')}</button>
+      <form onSubmit={onFormSubmit} className={classes.form}>
+        <Button type="submit" color={'custom-color'} mb={15}>
+          {t('Отправить запрос')}
+        </Button>
+        <Flex gap={15}>
+          <Stack w={'50%'}>
+            <Stack spacing={0}>
+              <Text>{t('Query')}</Text>
+              <Textarea
+                cols={30}
+                rows={100}
+                ref={queryRef}
+                placeholder="query here"
+                sx={{ flexGrow: 1 }}
+                classNames={{
+                  input: classes.input,
+                  wrapper: classes.wrapper,
+                }}
+              ></Textarea>
+            </Stack>
+            <Stack spacing={0}>
+              <Text>{t('Variables')}</Text>
+              <Textarea
+                cols={30}
+                rows={10}
+                ref={variablesRef}
+                placeholder="variables here"
+                sx={{ flexGrow: 1 }}
+                classNames={{
+                  input: classes.input,
+                }}
+              ></Textarea>
+            </Stack>
+            <Stack spacing={0}>
+              <Text>{t('Headers')}</Text>
+              <Textarea
+                cols={30}
+                rows={10}
+                ref={headersRef}
+                placeholder="headers here"
+                sx={{ flexGrow: 1 }}
+                classNames={{
+                  input: classes.input,
+                }}
+              ></Textarea>
+            </Stack>
+          </Stack>
+          <Stack w={'50%'} spacing={0}>
+            <Text>{t('Output')}</Text>
+            <Textarea
+              cols={30}
+              rows={10}
+              ref={outputRef}
+              readOnly
+              placeholder="output here"
+              sx={{
+                flexGrow: 1,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0,
+              }}
+            ></Textarea>
+          </Stack>
+        </Flex>
       </form>
     </>
   );
