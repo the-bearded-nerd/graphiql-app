@@ -27,4 +27,8 @@ export const useHeaderStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
+  logoLink: {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
 }));

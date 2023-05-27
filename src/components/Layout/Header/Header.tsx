@@ -14,6 +14,7 @@ import { IconBrandGraphql } from '@tabler/icons-react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useHeaderStyles } from './HeaderStyles';
 import { ThemeSwitch } from '../../ThemeSwitch/ThemeSwitch';
+import { Link } from 'react-router-dom';
 
 export const HeaderCustom = () => {
   const theme = useMantineTheme();
@@ -43,12 +44,15 @@ export const HeaderCustom = () => {
   return (
     <Header className={classes.header} ref={headerRef} height={80}>
       <Flex className={classes.inner}>
-        <Group>
-          <IconBrandGraphql size={50} color={'#781c2a'} />
-          <Text fz={'1.5rem'} fw={500} className={classes.logo}>
-            {t('Логотип')}
-          </Text>
-        </Group>
+        <Link to="/" className={classes.logoLink}>
+          <Group>
+            <IconBrandGraphql size={50} color={'#781c2a'} />
+            <Text fz={'1.5rem'} fw={500} className={classes.logo}>
+              {t('Логотип')}
+            </Text>
+          </Group>
+        </Link>
+
         <LangSwitch />
         <ThemeSwitch />
         {user && (
