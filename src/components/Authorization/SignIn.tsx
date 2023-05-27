@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { logInWithEmailAndPassword } from '../../../firebase';
+import { logInWithEmailAndPassword } from '../../firebase';
 import { useTranslation } from 'react-i18next';
 import { PasswordInput, Stack, TextInput, Button } from '@mantine/core';
 
@@ -36,8 +36,8 @@ export const SignIn = () => {
           error={errors.email && `${t('Почта')}`}
         />
         <PasswordInput
-          label="Password"
-          error={errors.password && `${t('Пароль')}`}
+          label={`${t('Пароль')}`}
+          error={errors.password && `${t('Пароль-ошибка')}`}
           placeholder="type password (Password1!)"
           {...register('password', {
             required: true,

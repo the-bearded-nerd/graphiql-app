@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { registerWithEmailAndPassword } from '../../../firebase';
+import { registerWithEmailAndPassword } from '../../firebase';
 import { useTranslation } from 'react-i18next';
 import { useRef } from 'react';
 import { PasswordInput, Stack, TextInput, Button } from '@mantine/core';
@@ -34,14 +34,14 @@ export const SignUp = () => {
     <form onSubmit={handleSubmit(submitHandler)}>
       <Stack mt={20}>
         <TextInput
-          label="Name"
+          label={`${t('Имя')}`}
           type="text"
           placeholder="type name"
           {...register('name', {
             required: true,
             pattern: /^[A-Z][a-z]{3,}$/,
           })}
-          error={errors.name && `${t('Имя')}`}
+          error={errors.name && `${t('Имя-ошибка')}`}
         />
 
         <TextInput
@@ -56,7 +56,7 @@ export const SignUp = () => {
         />
 
         <PasswordInput
-          label="Password"
+          label={`${t('Пароль')}`}
           type="password"
           placeholder="type password (Password1!)"
           {...register('password', {
@@ -64,11 +64,11 @@ export const SignUp = () => {
             pattern:
               /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?])[A-Za-z\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?]{8,}$/,
           })}
-          error={errors.password && `${t('Пароль')}`}
+          error={errors.password && `${t('Пароль-ошибка')}`}
         />
 
         <PasswordInput
-          label="Repeat password"
+          label={`${t('Повторите пароль')}`}
           type="password"
           placeholder="repeat password (Password1!)"
           {...register('confirmPassword', {

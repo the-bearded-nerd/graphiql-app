@@ -17,13 +17,13 @@ export const AuthPage = () => {
   }, [navigate, user]);
 
   return (
-    <Paper radius="md" p="xl" withBorder maw={300} m={'0 auto'}>
+    <Paper radius="md" p="xl" withBorder w={300} m={'0 auto'}>
       <Tabs value={activeTab} onTabChange={setActiveTab} color={'custom-color'}>
         <Tabs.List>
-          <Tabs.Tab value="sign in" fz={'1.2rem'}>
+          <Tabs.Tab value="sign in" fz={'1rem'} sx={{ flexBasis: '50%' }}>
             {t('Войти')}
           </Tabs.Tab>
-          <Tabs.Tab value="sign up" fz={'1.2rem'}>
+          <Tabs.Tab value="sign up" fz={'1rem'} sx={{ flexBasis: '50%' }}>
             {t('Регистрация')}
           </Tabs.Tab>
         </Tabs.List>

@@ -1,16 +1,25 @@
 import React from 'react';
-import cl from './Layout.module.scss';
-import { Header } from './Header/Header';
-import { Footer } from './Footer/Footer';
+import { HeaderCustom as Header } from './Header/Header';
+import { FooterCustom as Footer } from './Footer/Footer';
+import { Stack, createStyles } from '@mantine/core';
+
+const useStyles = createStyles({
+  page: {
+    padding: '100px 20px',
+    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { classes } = useStyles();
   return (
-    <div className={cl['layout']}>
+    <Stack mih={'100%'}>
       <Header />
-      <main className={cl['page']}>
-        <div className="_container">{children}</div>
-      </main>
+      <main className={classes.page}>{children}</main>
       <Footer />
-    </div>
+    </Stack>
   );
 };

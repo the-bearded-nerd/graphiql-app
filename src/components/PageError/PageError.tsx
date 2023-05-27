@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-
-import cls from './PageError.module.scss';
+import { Button, Title, Stack, Image } from '@mantine/core';
+import Img from '../../assets/error.svg';
 
 const PageError = () => {
   const { t } = useTranslation();
@@ -10,10 +10,15 @@ const PageError = () => {
   };
 
   return (
-    <div className={cls['page-error']}>
-      <p>{t('Произошла непредвиденная ошибка')}</p>
-      <button onClick={reloadPage}>{t('Обновить страницу')}</button>
-    </div>
+    <Stack align={'center'} justify={'center'} h={'100vH'} w={'100%'}>
+      <Image src={Img} maw={300} />
+      <Title variant={'1'} ta={'center'}>
+        {t('Произошла непредвиденная ошибка')}
+      </Title>
+      <Button onClick={reloadPage} color={'custom-color'}>
+        {t('Обновить страницу')}
+      </Button>
+    </Stack>
   );
 };
 

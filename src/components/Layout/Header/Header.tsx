@@ -1,23 +1,40 @@
-import cl from './Header.module.scss';
 import LangSwitch from '../../LangSwitch/LangSwitch';
 import { BugButton } from '../../BugButton/BugButton';
-import { logout } from '../../../firebase';
+import { auth, logout } from '../../../firebase';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
-import { Group, Text, Button, Flex } from '@mantine/core';
+import {
+  Group,
+  Text,
+  Button,
+  Flex,
+  Header,
+  useMantineTheme,
+} from '@mantine/core';
 import { IconBrandGraphql } from '@tabler/icons-react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useHeaderStyles } from './HeaderStyles';
+import { ThemeSwitch } from '../../ThemeSwitch/ThemeSwitch';
 
-export const Header = () => {
+export const HeaderCustom = () => {
+  const theme = useMantineTheme();
   const { t } = useTranslation();
+  const [user] = useAuthState(auth);
   const headerRef = useRef<HTMLElement>(null);
   const [prevPos, setPrevPos] = useState(window.pageYOffset);
+  const { classes } = useHeaderStyles();
 
   useEffect(() => {
     const scrollHandler = () => {
       const currentPos = window.pageYOffset;
-      const el = headerRef.current as HTMLElement;
-      el.style.height = prevPos > currentPos ? '60px' : '40px';
-      el.style.backgroundColor = prevPos > currentPos ? '#ffffff' : '#0d3800';
+      const header = headerRef.current as HTMLElement;
+      header.style.height = prevPos > currentPos ? '80px' : '60px';
+      header.style.backgroundColor =
+        prevPos > currentPos
+          ? 'transparent'
+          : theme.colorScheme === 'dark'
+          ? theme.colors.dark[6]
+          : theme.colors.gray[5];
       setPrevPos(currentPos);
     };
     window.addEventListener('scroll', scrollHandler);
@@ -25,30 +42,24 @@ export const Header = () => {
   }, [prevPos]);
 
   return (
-    <header className={cl['header']} ref={headerRef}>
-      <Flex
-        align={'center'}
-        sx={{ justifyContent: 'space-between' }}
-        gap={20}
-        w={'100%'}
-        maw={1220}
-        p={'0 10px'}
-        m={'0 auto'}
-      >
+    <Header className={classes.header} ref={headerRef} height={80}>
+      <Flex className={classes.inner}>
         <Group>
           <IconBrandGraphql size={50} color={'#781c2a'} />
-          {/* eslint-disable-next-line i18next/no-literal-string */}
-          <Text fz={'1.5rem'} fw={500} sx={{ userSelect: 'none' }}>
-            GraphiQL-clone
+          <Text fz={'1.5rem'} fw={500} className={classes.logo}>
+            {t('Логотип')}
           </Text>
         </Group>
         <LangSwitch />
+        <ThemeSwitch />
         {/* BugButton added for test purposes only! */}
         <BugButton />
-        <Button onClick={logout} radius={'md'} color={'custom-color'}>
-          {t('выйти')}
-        </Button>
+        {user && (
+          <Button onClick={logout} radius={'md'} color={'custom-color'}>
+            {t('выйти')}
+          </Button>
+        )}
       </Flex>
-    </header>
+    </Header>
   );
 };

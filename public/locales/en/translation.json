@@ -2,11 +2,11 @@
   "Перевод": "En",
   "Регистрация": "Sign Up",
   "Войти": "Sign in",
-  "Пароль": "Error: uncorrect password",
+  "Пароль-ошибка": "Error: uncorrect password",
   "Совпадение паролей": "Passwords do not match",
   "Почта": "Error: uncorrect email",
-  "Имя": "Error: uncorrect name",
-  "Приветствие": "Hello!",
+  "Имя-ошибка": "Error: uncorrect name",
+  "Приветствие": "Welcome to the GraphiQL-clone!",
   "на главную": "To main page",
   "выйти": "Log out",
   "Дима": "Dmitry Karvonen",
@@ -25,5 +25,9 @@
   "Отправить запрос": "Send query",
   "Страница не найдена": "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL",
   "Вернуться": "Get back to main page",
-  "Что-то не так": "Something is not right..."
+  "Что-то не так": "Something is not right...",
+  "Пароль": "Password",
+  "Имя": "Name",
+  "Повторите пароль": "Repeat password",
+  "Логотип": "GraphiQL-clone"
 }
