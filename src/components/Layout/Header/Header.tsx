@@ -1,7 +1,7 @@
 import LangSwitch from '../../LangSwitch/LangSwitch';
 import { auth, logout } from '../../../firebase';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Group,
   Text,
@@ -9,7 +9,11 @@ import {
   Flex,
   Header,
   useMantineTheme,
+  Burger,
+  Transition,
+  Paper,
 } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGraphql } from '@tabler/icons-react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useHeaderStyles } from './HeaderStyles';
@@ -17,11 +21,12 @@ import { ThemeSwitch } from '../../ThemeSwitch/ThemeSwitch';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const HeaderCustom = () => {
+  const [prevPos, setPrevPos] = useState(window.pageYOffset);
+  const [opened, { toggle, close }] = useDisclosure(false);
   const theme = useMantineTheme();
   const { t } = useTranslation();
   const [user] = useAuthState(auth);
   const headerRef = useRef<HTMLElement>(null);
-  const [prevPos, setPrevPos] = useState(window.pageYOffset);
   const { classes } = useHeaderStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -41,10 +46,62 @@ export const HeaderCustom = () => {
     };
     window.addEventListener('scroll', scrollHandler);
     return () => window.removeEventListener('scroll', scrollHandler);
-  }, [prevPos]);
+  }, [prevPos, theme.colorScheme, theme.colors.dark, theme.colors.gray]);
 
   const handleNavigate = () => {
     navigate('/auth');
+  };
+
+  const closeBurger = () => {
+    close();
+  };
+
+  const NavItems = () => {
+    return (
+      <React.Fragment>
+        <LangSwitch cb={closeBurger} />
+        <ThemeSwitch cb={closeBurger} />
+        {user ? (
+          <Button
+            onClick={() => {
+              logout();
+              close();
+            }}
+            radius={'md'}
+            color={'custom-color'}
+          >
+            {t('выйти')}
+          </Button>
+        ) : pathname === '/' ? (
+          <Group className={classes.signBtns}>
+            <Button
+              onClick={() => {
+                handleNavigate();
+                close();
+              }}
+              color={'custom-color'}
+              radius={'md'}
+              className={classes.signBtn}
+            >
+              {t('Войти')}
+            </Button>
+            <Button
+              onClick={() => {
+                handleNavigate();
+                close();
+              }}
+              color={'custom-color'}
+              radius={'md'}
+              className={classes.signBtn}
+            >
+              {t('Регистрация')}
+            </Button>
+          </Group>
+        ) : (
+          <></>
+        )}
+      </React.Fragment>
+    );
   };
 
   return (
@@ -59,32 +116,24 @@ export const HeaderCustom = () => {
           </Group>
         </Link>
 
-        <LangSwitch />
-        <ThemeSwitch />
-        {user ? (
-          <Button onClick={logout} radius={'md'} color={'custom-color'}>
-            {t('выйти')}
-          </Button>
-        ) : pathname === '/' ? (
-          <Group>
-            <Button
-              onClick={handleNavigate}
-              color={'custom-color'}
-              radius={'md'}
-            >
-              {t('Войти')}
-            </Button>
-            <Button
-              onClick={handleNavigate}
-              color={'custom-color'}
-              radius={'md'}
-            >
-              {t('Регистрация')}
-            </Button>
-          </Group>
-        ) : (
-          <></>
-        )}
+        <Group className={classes.navItems}>
+          <NavItems />
+        </Group>
+
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
+
+        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              <NavItems />
+            </Paper>
+          )}
+        </Transition>
       </Flex>
     </Header>
   );
