@@ -2,7 +2,15 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { auth } from '../../firebase';
 import { Link } from 'react-router-dom';
-import { Image, Paper, Stack, Title, createStyles } from '@mantine/core';
+import {
+  Image,
+  Paper,
+  Stack,
+  Title,
+  createStyles,
+  Text,
+  Divider,
+} from '@mantine/core';
 import Img from '../../assets/greeting.svg';
 
 const useStyles = createStyles((theme) => ({
@@ -46,6 +54,8 @@ const useStyles = createStyles((theme) => ({
     fontSize: '1.2rem',
     position: 'relative',
     overflow: 'hidden',
+    fontWeight: 600,
+    textTransform: 'uppercase',
     '&:after': {
       position: 'absolute',
       bottom: 0,
@@ -73,6 +83,13 @@ export const GreetingPage = () => {
     <Paper className={classes.wrapper} shadow={'md'}>
       <Stack align={'start'} justify={'center'} className={classes.content}>
         <Title variant={'1'}>{t('Приветствие')}</Title>
+        <Text fz={'1.4rem'} fw={600} color={'custom-color'}>
+          {t('Описание приложения')}
+        </Text>
+        <Text fz={'1.1rem'}>{t('Цель выполнения')}</Text>
+        <Divider size="md" variant="dotted" w={'100%'} />
+        <Text fs={'italic'}>{t('Инфо')}</Text>
+        <Divider size="md" variant="dotted" w={'100%'} />
         {user ? (
           <Link to="/main" className={classes.link}>
             {t('на главную')}
