@@ -1,9 +1,6 @@
-import { IntrospectionQuery } from 'graphql';
-import { request, gql } from 'graphql-request';
-
 const ENDPOINT = 'https://rickandmortyapi.com/graphql';
 
-const INTROSPECTION_QUERY = gql`
+const INTROSPECTION_QUERY = `
   query IntrospectionQuery {
     __schema {
       types {
@@ -89,8 +86,17 @@ const INTROSPECTION_QUERY = gql`
 `;
 
 export const getIntrospectionQueryData = async () => {
-  const data = await request<IntrospectionQuery>(ENDPOINT, INTROSPECTION_QUERY);
-  return data;
+  const response = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: INTROSPECTION_QUERY,
+    }),
+  });
+  const data = await response.json();
+  return data.data;
 };
 
 export const getDataWithVarsAndHeaders = async (
@@ -98,11 +104,28 @@ export const getDataWithVarsAndHeaders = async (
   variables: string | undefined,
   headers: string | undefined
 ) => {
-  const data = await request(
-    ENDPOINT,
-    query,
-    variables ? JSON.parse(variables) : undefined,
-    headers ? JSON.parse(headers) : undefined
-  );
-  return data;
+  let data;
+  try {
+    const response = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+        headers,
+      }),
+    });
+    data = await response.json();
+    return data;
+  } catch (e) {
+    const error = e as Error;
+    return {
+      error: {
+        message: error.message,
+        stack: error.stack,
+      },
+    };
+  }
 };
