@@ -38,5 +38,8 @@
   "Результат запроса": "Query result",
   "Главная страница": "Main page",
   "Показать": "Show",
-  "Скрыть": "Hide"
+  "Скрыть": "Hide",
+  "Описание приложения": "This application is a sandbox for testing GraphQL queries",
+  "Цель выполнения": "The application was made as the final task of the React course from The Rolling Scopes",
+  "Инфо": "Information about the developers and a link to the course description can be found at the bottom of the page"
 }
