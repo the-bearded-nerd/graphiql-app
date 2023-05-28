@@ -20,7 +20,7 @@ export function DocsField({ elemToShow }: DocsFieldProps) {
           ></div>
         </>
       )}
-      {elemToShow.args && (
+      {elemToShow.args && elemToShow.args.length > 0 && (
         <>
           <div>{t('Аргументы')}</div>
           <div
