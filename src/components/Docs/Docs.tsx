@@ -51,20 +51,16 @@ export function Docs() {
   const onDivClick = (event: React.MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
     if (target.classList.contains('type_name')) {
-      console.log('clicked on type');
       const clickedType = schemaTypes?.filter(
         (type) => type.name === target.innerHTML
       )[0];
-      console.log(clickedType);
       if (clickedType) setCurrentShownElement(clickedType);
       if (history && clickedType) setHistory([...history, clickedType]);
     }
     if (target.classList.contains('field_name')) {
-      console.log('clicked on field_name');
       const clickedField = (currentShownElement as FullType).fields?.filter(
         (elem) => elem.name === target.innerHTML
       )[0];
-      console.log(clickedField);
       if (clickedField) setCurrentShownElement(clickedField);
       if (history && clickedField) setHistory([...history, clickedField]);
     }

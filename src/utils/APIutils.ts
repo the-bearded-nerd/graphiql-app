@@ -101,8 +101,7 @@ export const getIntrospectionQueryData = async () => {
 
 export const getDataWithVarsAndHeaders = async (
   query: string,
-  variables: string | undefined,
-  headers: string | undefined
+  variables: string | undefined
 ) => {
   let data;
   try {
@@ -113,8 +112,7 @@ export const getDataWithVarsAndHeaders = async (
       },
       body: JSON.stringify({
         query,
-        variables,
-        headers,
+        variables: variables ? JSON.parse(variables) : {},
       }),
     });
     data = await response.json();
