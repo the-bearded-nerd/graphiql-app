@@ -11,7 +11,7 @@ import { DocsPage } from './DocsPage/DocsPage';
 import { getIntrospectionQueryData } from '../../utils/APIutils';
 import { useTranslation } from 'react-i18next';
 
-import './Docs.css';
+import { Button, Container, Title } from '@mantine/core';
 
 export function Docs() {
   const { t } = useTranslation();
@@ -79,32 +79,36 @@ export function Docs() {
   };
 
   return (
-    <div className="docs-content" onClick={onDivClick}>
-      <h2>{t('Документация')}</h2>
+    <Container w={320} onClick={onDivClick}>
+      <Title variant={'2'}>{t('Документация')}</Title>
       {isLoaded && (
         <>
           <p>{t('Схема загружена')}</p>
-          <button
+          <Button
+            color={'custom-color'}
             onClick={() => {
               setIsShown(!isShown);
             }}
+            m={'10px 0'}
           >
             {isShown ? t('Скрыть') : t('Показать')}
-          </button>
+          </Button>
         </>
       )}
       {isShown && (
         <div>
           {!!(history.length > 1) && (
-            <button onClick={onBackButtonClick}>{`< ${
-              history[history.length - 2].name
-            }`}</button>
+            <Button
+              color={'custom-color'}
+              variant={'outline'}
+              onClick={onBackButtonClick}
+            >{`< ${history[history.length - 2].name}`}</Button>
           )}
           {schemaTypes && currentShownElement && (
             <DocsPage elemToShow={currentShownElement} />
           )}
         </div>
       )}
-    </div>
+    </Container>
   );
 }
