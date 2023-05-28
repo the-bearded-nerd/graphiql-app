@@ -47,6 +47,7 @@ export const useHeaderStyles = createStyles((theme) => ({
     left: 0,
     right: 0,
     zIndex: 0,
+    height: '100vh',
     borderTopRightRadius: 0,
     borderTopLeftRadius: 0,
     borderTopWidth: 0,
@@ -60,7 +61,7 @@ export const useHeaderStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
-  signBtns: {
+  menuBtns: {
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       flexDirection: 'column',
@@ -68,7 +69,7 @@ export const useHeaderStyles = createStyles((theme) => ({
       width: '100%',
     },
   },
-  signBtn: {
+  menuBtn: {
     [theme.fn.smallerThan('sm')]: {
       width: '100%',
     },

@@ -6,7 +6,7 @@ import {
 } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons-react';
 
-export function ThemeSwitch({ cb }: { cb: () => void }) {
+export function ThemeSwitch() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
 
@@ -14,10 +14,7 @@ export function ThemeSwitch({ cb }: { cb: () => void }) {
     <Group position="center" my={30}>
       <Switch
         checked={colorScheme === 'dark'}
-        onChange={() => {
-          toggleColorScheme();
-          cb();
-        }}
+        onChange={() => toggleColorScheme()}
         color={'custom-color'}
         size="lg"
         onLabel={<IconSun color={theme.white} size="1.25rem" stroke={1.5} />}

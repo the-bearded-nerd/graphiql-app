@@ -14,7 +14,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const LangSwitch = ({ cb }: { cb: () => void }) => {
+const LangSwitch = () => {
   const { i18n } = useTranslation();
   const { classes } = useStyles();
   const theme = useMantineTheme();
@@ -22,7 +22,6 @@ const LangSwitch = ({ cb }: { cb: () => void }) => {
 
   const toggle = () => {
     i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-    cb();
   };
 
   return (

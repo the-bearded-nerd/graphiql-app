@@ -12,6 +12,7 @@ import {
   Burger,
   Transition,
   Paper,
+  Container,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGraphql } from '@tabler/icons-react';
@@ -52,28 +53,38 @@ export const HeaderCustom = () => {
     navigate('/auth');
   };
 
-  const closeBurger = () => {
-    close();
-  };
-
   const NavItems = () => {
     return (
       <React.Fragment>
-        <LangSwitch cb={closeBurger} />
-        <ThemeSwitch cb={closeBurger} />
+        <LangSwitch />
+        <ThemeSwitch />
         {user ? (
-          <Button
-            onClick={() => {
-              logout();
-              close();
-            }}
-            radius={'md'}
-            color={'custom-color'}
-          >
-            {t('выйти')}
-          </Button>
+          <Group className={classes.menuBtns}>
+            <Button
+              onClick={() => {
+                logout();
+                close();
+              }}
+              radius={'md'}
+              color={'custom-color'}
+              className={classes.menuBtn}
+            >
+              {t('выйти')}
+            </Button>
+            <Button
+              onClick={() => {
+                navigate('/main');
+                close();
+              }}
+              radius={'md'}
+              color={'custom-color'}
+              className={classes.menuBtn}
+            >
+              {t('На главную')}
+            </Button>
+          </Group>
         ) : pathname === '/' ? (
-          <Group className={classes.signBtns}>
+          <Group className={classes.menuBtns}>
             <Button
               onClick={() => {
                 handleNavigate();
@@ -81,7 +92,7 @@ export const HeaderCustom = () => {
               }}
               color={'custom-color'}
               radius={'md'}
-              className={classes.signBtn}
+              className={classes.menuBtn}
             >
               {t('Войти')}
             </Button>
@@ -92,7 +103,7 @@ export const HeaderCustom = () => {
               }}
               color={'custom-color'}
               radius={'md'}
-              className={classes.signBtn}
+              className={classes.menuBtn}
             >
               {t('Регистрация')}
             </Button>

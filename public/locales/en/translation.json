@@ -29,5 +29,6 @@
   "Пароль": "Password",
   "Имя": "Name",
   "Повторите пароль": "Repeat password",
-  "Логотип": "GraphiQL-clone"
+  "Логотип": "GraphiQL-clone",
+  "На главную": "Go to Main Page"
 }
