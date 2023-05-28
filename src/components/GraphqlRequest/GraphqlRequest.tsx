@@ -2,8 +2,13 @@ import { useRef, useState } from 'react';
 
 import { getDataWithVarsAndHeaders } from '../../utils/APIutils';
 import { useTranslation } from 'react-i18next';
+import { Button, Flex, Stack, createStyles } from '@mantine/core';
 
-import './GraphqlRequest.css';
+const useStyles = createStyles({
+  area: {
+    padding: 5,
+  },
+});
 
 export function GraphQLRequest() {
   const queryRef = useRef<HTMLTextAreaElement>(null);
@@ -14,6 +19,7 @@ export function GraphQLRequest() {
   const [isVariablesShown, setIsVariablesShown] = useState(false);
 
   const { t } = useTranslation();
+  const { classes } = useStyles();
 
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,18 +51,21 @@ export function GraphQLRequest() {
 
   return (
     <>
-      <form className="graphqlrequest-form" onSubmit={onFormSubmit}>
-        <div className="graphqlrequest-content">
-          <div className="query-and-variables">
+      <form onSubmit={onFormSubmit}>
+        <Flex miw={320} wrap={'wrap'} gap={10}>
+          <Stack miw={320}>
             <h3>{t('Введите запрос')}</h3>
             <textarea
               cols={30}
               rows={10}
               ref={queryRef}
               placeholder="query here"
+              className={classes.area}
             ></textarea>
-            <button
+            <Button
+              color={'custom-color'}
               type="button"
+              variant={'outline'}
               onClick={() => {
                 setIsVariablesShown(!isVariablesShown);
               }}
@@ -64,7 +73,7 @@ export function GraphQLRequest() {
               {isVariablesShown
                 ? t('Скрыть переменные')
                 : t('Показать переменные')}
-            </button>
+            </Button>
             {isVariablesShown && (
               <>
                 <h3>{t('Введите переменные')}</h3>
@@ -73,12 +82,13 @@ export function GraphQLRequest() {
                   rows={10}
                   ref={variablesRef}
                   placeholder="variables here"
+                  className={classes.area}
                 ></textarea>
               </>
             )}
-          </div>
+          </Stack>
 
-          <div className="output">
+          <Stack miw={320}>
             <h3>{t('Результат запроса')}</h3>
             <textarea
               cols={30}
@@ -86,11 +96,14 @@ export function GraphQLRequest() {
               ref={outputRef}
               readOnly
               placeholder="output here"
+              className={classes.area}
             ></textarea>
-          </div>
-        </div>
+          </Stack>
+        </Flex>
 
-        <button type="submit">{t('Отправить запрос')}</button>
+        <Button color={'custom-color'} type="submit" mt={10}>
+          {t('Отправить запрос')}
+        </Button>
       </form>
     </>
   );
