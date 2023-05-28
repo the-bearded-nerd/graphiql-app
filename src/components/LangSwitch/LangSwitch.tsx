@@ -28,8 +28,8 @@ const LangSwitch = () => {
     <Switch
       checked={i18n.language === 'ru'}
       onChange={toggle}
-      onLabel="RU"
-      offLabel="EN"
+      onLabel="EN"
+      offLabel="RU"
       color={trackColor}
       size={'lg'}
       classNames={{

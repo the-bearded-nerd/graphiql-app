@@ -30,5 +30,13 @@
   "Имя": "Name",
   "Повторите пароль": "Repeat password",
   "Логотип": "GraphiQL-clone",
-  "На главную": "Go to Main Page"
+  "На главную": "Go to Main Page",
+  "Введите запрос":"Enter query",
+  "Скрыть переменные": "Show variables",
+  "Показать переменные": "Hide variables",
+  "Введите переменные": "Enter variables",
+  "Результат запроса": "Query result",
+  "Главная страница": "Main page",
+  "Показать": "Show",
+  "Скрыть": "Hide"
 }
