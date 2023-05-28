@@ -27,4 +27,51 @@ export const useHeaderStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
+  logoLink: {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
+  navItems: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+  burger: {
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+  dropdown: {
+    position: 'absolute',
+    top: '100%',
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    height: '100vh',
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 20,
+
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
+    },
+  },
+  menuBtns: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 10,
+      width: '100%',
+    },
+  },
+  menuBtn: {
+    [theme.fn.smallerThan('sm')]: {
+      width: '100%',
+    },
+  },
 }));
