@@ -3,6 +3,8 @@ import { useRef } from 'react';
 import { getDataWithVarsAndHeaders } from '../../utils/APIutils';
 import { useTranslation } from 'react-i18next';
 
+import './GraphqlRequest.css';
+
 export function GraphQLRequest() {
   const queryRef = useRef<HTMLTextAreaElement>(null);
   const variablesRef = useRef<HTMLTextAreaElement>(null);
@@ -41,7 +43,7 @@ export function GraphQLRequest() {
 
   return (
     <>
-      <form onSubmit={onFormSubmit}>
+      <form className="graphqlrequest-content" onSubmit={onFormSubmit}>
         <textarea
           cols={30}
           rows={10}
@@ -53,12 +55,6 @@ export function GraphQLRequest() {
           rows={10}
           ref={variablesRef}
           placeholder="variables here"
-        ></textarea>
-        <textarea
-          cols={30}
-          rows={10}
-          ref={headersRef}
-          placeholder="headers here"
         ></textarea>
         <textarea
           cols={30}

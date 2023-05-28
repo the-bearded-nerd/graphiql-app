@@ -11,9 +11,12 @@ import { DocsPage } from './DocsPage/DocsPage';
 import { getIntrospectionQueryData } from '../../utils/APIutils';
 import { useTranslation } from 'react-i18next';
 
+import './Docs.css';
+
 export function Docs() {
   const { t } = useTranslation();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isShown, setIsShown] = useState(false);
   const [schemaTypes, setSchemaTypes] = useState<null | FullType[]>(null);
   const [currentShownElement, setCurrentShownElement] = useState<
     null | FullType | InputValue | Field | TypeRef | DocsFirstPage
@@ -76,16 +79,31 @@ export function Docs() {
   };
 
   return (
-    <div onClick={onDivClick}>
+    <div className="docs-content" onClick={onDivClick}>
       <h2>{t('Документация')}</h2>
-      {isLoaded && <p>{t('Схема загружена')}</p>}
-      {!!(history.length > 1) && (
-        <button onClick={onBackButtonClick}>{`< ${
-          history[history.length - 2].name
-        }`}</button>
+      {isLoaded && (
+        <>
+          <p>{t('Схема загружена')}</p>
+          <button
+            onClick={() => {
+              setIsShown(!isShown);
+            }}
+          >
+            {isShown ? t('Скрыть') : t('Показать')}
+          </button>
+        </>
       )}
-      {schemaTypes && currentShownElement && (
-        <DocsPage elemToShow={currentShownElement} />
+      {isShown && (
+        <div>
+          {!!(history.length > 1) && (
+            <button onClick={onBackButtonClick}>{`< ${
+              history[history.length - 2].name
+            }`}</button>
+          )}
+          {schemaTypes && currentShownElement && (
+            <DocsPage elemToShow={currentShownElement} />
+          )}
+        </div>
       )}
     </div>
   );
