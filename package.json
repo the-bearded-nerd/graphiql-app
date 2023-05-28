@@ -17,8 +17,6 @@
     "@mantine/hooks": "^6.0.11",
     "@tabler/icons-react": "^2.20.0",
     "firebase": "^9.21.0",
-    "graphql": "^16.6.0",
-    "graphql-request": "^6.0.0",
     "i18next": "^22.4.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
